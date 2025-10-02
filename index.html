@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="test"></div>
   <div class="bg-smoke"></div>
   <header>
     <div class="logo"></div>
@@ -47,20 +46,23 @@
       <img src="logo.jpg" alt="">
     </div>
   </section>
-  <script>
-      function doConnectFunction() {
-        console.log("connection");
-        document.getElementById("test").innerHTML = '<img src="http://lorempixel.com/640/480/nature">';
+    <script>
+      function updateOnlineStatus() {
+        if (navigator.onLine) {
+          alert('Соединение с интернетом восстановлено!');
+    // Можно добавить свой код для отображения баннера или скрытия сообщения об ошибке
+        } else {
+          alert('Вы офлайн! Проверьте соединение с интернетом.');
+    // Можно добавить свой код для отображения баннера или блокировки части интерфейса
+        }
       }
 
-      function doNotConnectFunction() {
-        document.getElementById("test").innerText = "Интернета нет!";
-      }
+    // Проверка при загрузке страницы
+      window.addEventListener('load', updateOnlineStatus);
 
-      var i = new Image();
-      i.onload = doConnectFunction;
-      i.onerror = doNotConnectFunction;
-      i.src = 'https://www.google.com/' + escape(Date());
-  </script>
+// Автоматическая реакция на изменение соединения
+      window.addEventListener('online', updateOnlineStatus);
+      window.addEventListener('offline', updateOnlineStatus);
+    </script>
 </body>
 </html>
