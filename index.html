@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="test"></div>
   <div class="bg-smoke"></div>
   <header>
     <div class="logo"></div>
@@ -46,5 +47,20 @@
       <img src="logo.jpg" alt="">
     </div>
   </section>
+  <script>
+      function doConnectFunction() {
+        console.log("connection");
+        document.getElementById("test").innerHTML = '<img src="http://lorempixel.com/640/480/nature">';
+      }
+
+      function doNotConnectFunction() {
+        document.getElementById("test").innerText = "Интернета нет!";
+      }
+
+      var i = new Image();
+      i.onload = doConnectFunction;
+      i.onerror = doNotConnectFunction;
+      i.src = 'https://www.google.com/' + escape(Date());
+  </script>
 </body>
 </html>
